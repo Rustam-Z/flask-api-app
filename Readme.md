@@ -1,5 +1,7 @@
 # Flask app with SQL ORM
-`flask`, `sqlite`, `orm`
+https://flask-sqlorm.herokuapp.com
+
+`flask`, `sqlite`, `sql orm`
 
 ## Docs
 `app.py` - logic of application
@@ -13,8 +15,11 @@
 - https://flask-sqlalchemy.palletsprojects.com/en/2.x/
 
 ## Heroku deployment
+
 ```shell
 heroku login
+pip freeze > requirements.txt
+echo "web: gunicorn app:app" > Procfile
 git init
 git add .
 git commit -m "init"
