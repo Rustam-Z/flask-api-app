@@ -15,4 +15,10 @@
 ## Heroku deployment
 ```shell
 heroku login
+git init
+git add .
+git commit -m "init"
+heroku create flask-sqlorm
+git remote -v 
+git push heroku master
 ```
