@@ -1,23 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
-from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from models import Todo, db
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
-db = SQLAlchemy(app)
+db.init_app(app)
 
-# from app import db
-# db.create_all()
-
-class Todo(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.String(2-0), nullable=False)
-    completed = db.Column(db.Integer, default=0)
-    date_created = db.Column(db.DateTime, default=datetime.utcnow)
-
-    def __repr__(self):
-        return '<Task %r>' % self.id
-
+with app.app_context():
+    db.create_all()
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
