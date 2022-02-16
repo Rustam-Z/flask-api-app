@@ -1,7 +1,9 @@
 # Flask app with SQL ORM
 https://flask-sqlorm.herokuapp.com
-
 `flask`, `sqlite`, `sql orm`
+
+## TODO:
+- [ ] Write unit, integration, UI, API tests
 
 ## Docs
 - `app.py` - main application
