@@ -3,6 +3,7 @@ from datetime import datetime
 
 db = SQLAlchemy()
 
+
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(2-0), nullable=False)

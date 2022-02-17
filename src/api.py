@@ -1,8 +1,13 @@
 # Server Restful API
-
+import os
+import sys
 from flask import Flask, jsonify
 from flask_restful import reqparse, Api, Resource
-from models import Todo, db
+from src.models import Todo, db
+
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
@@ -10,7 +15,7 @@ db.init_app(app)
 
 with app.app_context():
     db.create_all()
-    
+
 api = Api(app)
 
 parser = reqparse.RequestParser()
@@ -52,6 +57,7 @@ class Task(Resource):
             print("Not updated")
             return jsonify({'error': 'Not updated'})
 
+
 # TodoList
 # shows a list of all todos, and lets you POST to add new tasks
 class TasksList(Resource):
@@ -79,10 +85,10 @@ class TasksList(Resource):
         except:
             return jsonify({'error': 'Not added'})
 
-# Endpoints
-api.add_resource(TasksList, '/tasks')
-api.add_resource(Task, '/tasks/<task_id>')
 
+# Endpoints
+api.add_resource(TasksList, '/tasks/')
+api.add_resource(Task, '/tasks/<task_id>/')
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
